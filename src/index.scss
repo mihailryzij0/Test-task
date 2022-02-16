@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.cell-box {
+.cells-box {
   width: 60%;
   margin: 0 auto;
   padding: 40px;
@@ -17,12 +17,11 @@
   grid-gap: 20px;
 }
 
-.colls__item {
+.cells__item {
   padding: 50px;
   text-align: center;
   background-color: rgb(29 16 172);
   transition: transform 1500ms;
-  transform: scale(1, 1);
 }
 
 .informer {

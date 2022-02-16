@@ -1,64 +1,65 @@
 export class FlippingCells{
   constructor(el){
-    this.sells = el.querySelectorAll('.colls__item')
+    this.cells = el.querySelectorAll('.cells__item')
     this.button = el.querySelector('.button')
-    this.list = el.querySelector('.informer')
-    this.game = false;
+    this.informerList = el.querySelector('.informer')
+    this.status = false;
     this.installListeners();
-    this.iterator = 0;
   }
 
 
   initInterval(){
+    let iterator = 0
    const interval = setInterval(()=>{
-      if( this.iterator ===  this.sells.length){
-        this.button.innerText = 'clear sells'
-       clearInterval(interval) 
+      if(iterator ===  this.cells.length){
+        this.clearField();
+        clearInterval(interval); 
      }else{
-      this.sells[this.iterator].style.transform = 'scale(1,-1)'
-      this.iterator +=1
+      this.cells[iterator].style.transform = 'scale(1,-1)'
+      iterator +=1
      }
      },500)
   }
 
   startTransform(){
-    this.game = true;
+    this.status = true;
+    this.informerList.innerHTML += `
+    <li class="informe__item">START OF PROGRESS</li>
+    `
     this.button.innerText = 'in progress'
     this.initInterval()
   }
 
   clearField(){
-    this.game = false;
+    this.status = false;
+    this.informerList.innerHTML +=`
+    <li class="informe__item">END OF PROGRESS</li>
+    `;
     this.button.innerText = 'Start'
-    this.sells.forEach((element)=>{
-      element.style.transform = 'scale(1,1)'
+    this.cells.forEach((cell)=>{
+      cell.style.transform = 'scale(1,1)'
      })
-     this.iterator = 0;
-
  }
 
    installListeners(){
     this.button.addEventListener('click', ()=> {
-      this.game === false ? this.startTransform() : this.clearField()
+      if(this.status === false)this.startTransform()
     })
-    this.sells.forEach((el, index)=>{
+       this.cells.forEach((cell, index)=>{
 
-    el.addEventListener('transitionend',()=>{
-        this.list.innerHTML += `
-        <li class="informe__item">Cell-${index+1} animation end</li>
-        `
-        this.list.scrollTop = this.list.scrollHeight
+      cell.addEventListener('transitionend',()=>{
+        if(this.status === false)return
+        this.informerList.innerHTML += `
+        <li class="informe__item">Cell-${index+1} animation end</li>`
+        this.informerList.scrollTop = 9999
       })
-    el.addEventListener('transitionstart',()=>{
-      this.list.innerHTML +=  `
-      <li class="informe__item">Cell-${index+1} animation start</li>
-      `
-      this.list.scrollTop = this.list.scrollHeight
+      cell.addEventListener('transitionstart',()=>{
+        if(this.status === false)return
+      this.informerList.innerHTML +=  `
+      <li class="informe__item">Cell-${index+1} animation start</li>`
+      this.informerList.scrollTop = 9999
     })
     })
     
   } 
   }
-
-
-  
