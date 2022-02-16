@@ -4,21 +4,19 @@ export class FlippingCells{
     this.button = el.querySelector('.button')
     this.list = el.querySelector('.informer')
     this.game = false;
-   this.installListeners();
-
+    this.installListeners();
+    this.iterator = 0;
   }
 
 
   initInterval(){
-    const iterator = 0;
    const interval = setInterval(()=>{
-      if( iterator ===  this.sells.length){
+      if( this.iterator ===  this.sells.length){
         this.button.innerText = 'clear sells'
        clearInterval(interval) 
-       alert('completed')
      }else{
-      this.sells[iterator].style.transform = 'scale(1,-1)'
-      iterator +1
+      this.sells[this.iterator].style.transform = 'scale(1,-1)'
+      this.iterator +=1
      }
      },500)
   }
@@ -39,7 +37,7 @@ export class FlippingCells{
 
  }
 
- installListeners(){
+   installListeners(){
     this.button.addEventListener('click', ()=> {
       this.game === false ? this.startTransform() : this.clearField()
     })
