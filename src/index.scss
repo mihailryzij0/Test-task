@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.cell-box {
+  width: 60%;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: rgb(122 9 84 / 74.1%);
+  color: #fff;
+  font-size: 25px;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.colls__item {
+  padding: 50px;
+  text-align: center;
+  background-color: rgb(29 16 172);
+  transition: transform 1500ms;
+  transform: scale(1, 1);
+}
+
+.informer {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.button {
+  background-color: rgb(29 16 172);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 25px;
+}
