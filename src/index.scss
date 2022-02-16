@@ -15,13 +15,13 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-}
 
-.cells__item {
-  padding: 50px;
-  text-align: center;
-  background-color: rgb(29 16 172);
-  transition: transform 1500ms;
+  &__item {
+    padding: 50px;
+    text-align: center;
+    background-color: rgb(29 16 172);
+    transition: transform 1500ms;
+  }
 }
 
 .informer {
